@@ -1,4 +1,4 @@
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (
     id         BIGINT PRIMARY KEY,
     username   VARCHAR(50) UNIQUE  NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE users
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE trips
+CREATE TABLE IF NOT EXISTS trips
 (
     id              BIGINT PRIMARY KEY,
     driver_id       BIGINT       NOT NULL REFERENCES users (id) ON DELETE CASCADE,

@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #135db9;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-section {
+    padding: 40px 20px;
+    background-color: white;
+    text-align: center;
+    height: 70%;
+}
+
+.search-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-form input, .search-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-form button {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #0073cc;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    background-color: #eef6ff;
+    /* „тобы р€д занимал всЄ оставшеес€ пространство, так как таблична€ разметка не позволит ему вытолкнуть header и footer */
+    height: 30%;
+}
+
+.feature {
+    max-width: 300px;
+    margin: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #135db9;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+#logo {
+    width: 5%;
+}
+
+.search-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px 70px;
+}
+
+.search-right {
+    width: 50%;
+    padding: 10px;
+    box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-left {
+    width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+    .search-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px 70px;
+    }
+
+    .search-right {
+        width: 100%;
+        padding: 10px;
+        box-shadow: 0 0 16px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-left {
+        width: 100%;
+    }
+
+    .search-section {
+        padding: 35px 20px;
+        background-color: white;
+        text-align: center;
+        height: 108%;
+    }
+    .features {
+        display: flex
+    ;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 43px 20px;
+        background-color: #eef6ff;
+        height: 100%;
+    }
+}
