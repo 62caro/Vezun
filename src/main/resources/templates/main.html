@@ -6,6 +6,60 @@
     <link rel="icon" href="/assets/logo.png" th:href="@{/assets/logo.png}" type="image/png">
     <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" th:src="@{/script/jquery-3.7.1.js}" src="../static/script/jquery-3.7.1.js"></script>
+    <script type="text/javascript" th:src="@{/script/jquery-3.7.1.min.js}"
+            src="../static/script/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $('.autocomplete-input').on('input', function () {
+                const $input = $(this);
+                const query = $input.val();
+                const $container = $input.closest('.autocomplete-container');
+                const $suggestions = $container.find('.autocomplete-suggestions');
+
+                if (query.length < 3) {
+                    $suggestions.empty().hide();
+                    return;
+                }
+
+                $.get('/search', {locality: query}, function (data) {
+                    $suggestions.empty();
+
+                    if (data.length === 0) {
+                        $suggestions.hide();
+                        return;
+                    }
+
+                    data.forEach(item => {
+                        const obl = item.obl ?? '';
+                        const raion = item.raion ?? '';
+                        const name = item.name ?? '';
+                        const li = $('<li></li>').text(obl + ', ' + raion + ', ' + name).css({
+                            padding: '5px',
+                            cursor: 'pointer'
+                        });
+
+                        li.on('click', function () {
+                            $input.val(item.name);
+                            $suggestions.empty().hide();
+                        });
+
+                        $suggestions.append(li);
+                    });
+
+                    $suggestions.show();
+                });
+            });
+
+            // Скрытие при клике вне
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.autocomplete-container').length) {
+                    $('.autocomplete-suggestions').hide();
+                }
+            });
+        });
+    </script>
+
     <title>Vezun — Поиск попутчиков по Беларуси</title>
 </head>
 <body>
@@ -14,9 +68,16 @@
     <div class="search-group">
         <div class="search-left">
             <h2>Найдите попутчиков по Беларуси</h2>
-            <form class="search-form">
-                <input type="text" placeholder="Откуда (например, Минск)">
-                <input type="text" placeholder="Куда (например, Гродно)">
+            <form action="/search" method="get" class="search-form">
+                <div class="autocomplete-container" style="position: relative;">
+                    <input type="text" id="from_point" class="autocomplete-input" placeholder="Откуда (например, Минск)"
+                           autocomplete="off">
+                    <ul class="autocomplete-suggestions"></ul>
+                </div>
+                <div class="autocomplete-container" style="position: relative;">
+                    <input type="text" id="to_point" class="autocomplete-input" placeholder="Куда (например, Гродно)">
+                    <ul class="autocomplete-suggestions"></ul>
+                </div>
                 <input type="date">
                 <button type="submit">Найти поездку</button>
             </form>
