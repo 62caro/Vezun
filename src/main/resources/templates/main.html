@@ -3,11 +3,52 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Услуги</title>
+    <link rel="icon" href="/assets/logo.png" th:href="@{/assets/logo.png}" type="image/png">
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vezun — Поиск попутчиков по Беларуси</title>
 </head>
 <body>
-<div>
+<header th:insert="~{/blocks/header.html :: #header}"></header>
+<section class="search-section">
+    <div class="search-group">
+        <div class="search-left">
+            <h2>Найдите попутчиков по Беларуси</h2>
+            <form class="search-form">
+                <input type="text" placeholder="Откуда (например, Минск)">
+                <input type="text" placeholder="Куда (например, Гродно)">
+                <input type="date">
+                <button type="submit">Найти поездку</button>
+            </form>
+        </div>
+        <div class="search-right">
+            <h2>Поездки, которые могут вам подойти</h2>
+            <form class="search-form">
+                <input type="text" placeholder="Откуда (например, Минск)">
+                <input type="text" placeholder="Куда (например, Гродно)">
+                <input type="date">
+                <button type="submit">Найти поездку</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-</div>
+<section class="features">
+    <div class="feature">
+        <h3>Удобно</h3>
+        <p>Простой и понятный интерфейс для поиска и создания поездок.</p>
+    </div>
+    <div class="feature">
+        <h3>Безопасно</h3>
+        <p>Профили с рейтингами, система отзывов и подтверждение личности.</p>
+    </div>
+    <div class="feature">
+        <h3>Быстро</h3>
+        <p>Найдите подходящую поездку за считанные минуты.</p>
+    </div>
+</section>
+
+<footer th:insert="~{/blocks/footer.html :: #footer}"></footer>
+
 </body>
 </html>
